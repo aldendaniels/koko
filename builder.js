@@ -20,13 +20,13 @@ function build(debug) {
         debug: debug
     });
 
-    // Import HTML files as strings using stringify
+    // Import HTML files as strings using stringify.
     bundler.transform({ global: true }, stringify(['.html']));
     if (!debug) {
         bundler.transform({ global: true }, 'uglifyify');
     }
 
-    // Bundle!
+    // Bundle code.
     var path = (debug ? './build/koko.debug.js' : './build/koko.min.js');
     var sourceStream = bundler.bundle();
 
@@ -35,11 +35,12 @@ function build(debug) {
     licenseStream.push(licenseComment);
     licenseStream.push(null); // End of file
 
-    // Output.
+    // Prepend license stream.
     var combinedStream = CombinedStream.create();
     combinedStream.append(licenseStream);
     combinedStream.append(sourceStream);
 
+    // Write to disk!
     var outStream = fs.createWriteStream(path);
     combinedStream.pipe(outStream);
 }

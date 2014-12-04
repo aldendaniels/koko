@@ -14,10 +14,9 @@ function init(ko) {
         update: function (element, valueAccessor, ignore1, ignore2, bindingContext) {
             /* Expects:
              *  {
-             *      path: 'root.account-list.account-detail',
-             *      params: { accountId: 123 },
-             *      select: true,
-             *      text: 'Accounts'
+             *      path: 'root.user-list.user-detail',
+             *      params: { userId: 123 },
+             *      activate: true
              *  }
              * */
 
@@ -40,11 +39,10 @@ function init(ko) {
         update: function (element, valueAccessor, ignore1, ignore2, bindingContext) {
             /* Expects:
              *  {
-             *      path: 'root.account-list.account-detail',
-             *      params: { accountId: 123 },
+             *      path: 'root.user-list.user-detail',
+             *      params: { userId: 123 }
              *  }
              * */
-
             var opts = valueAccessor();
 
             // Conditionally add the "active" class.

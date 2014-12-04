@@ -1,9 +1,9 @@
 Welcome to Koko
 ==============
 
-Koko is a client-side, state-based routing framework for single-page `Knockout`_ 
-applications. Koko is built on Knockout's **component** feature and supports
-loading nested components. Loosely speaking, Koko is to Knockout what `Angular UI Router`_ is to Angular.
+Koko is a client-side routing framework for single-page `Knockout`_  applications. 
+
+Koko is built on Knockout's **component** feature and supports loading nested components. Loosely speaking, Koko is to Knockout what `Angular UI Router`_ is to `Angular`_.
 
 .. WARNING::
    Koko is in the early stages of development. A stable (**1.0**) release is
@@ -24,3 +24,4 @@ loading nested components. Loosely speaking, Koko is to Knockout what `Angular U
 
 .. _Knockout: http://knockoutjs.com/
 .. _Angular UI Router: https://github.com/angular-ui/ui-router
+.. _Angular: https://angularjs.org/

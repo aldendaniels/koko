@@ -87,7 +87,7 @@ Use to:
 
 Every parameter used in the ``routes`` object MUST have an entry here.
 
-Not Found Redirect
+Not Found Component
 ------------------------
 
 .. code-block:: javascript

@@ -5,6 +5,7 @@ var urlResolver = require('./url-resolver');
 var component   = require('./component');
 var bindings    = require('./bindings');
 var kokoView    = require('./koko-view');
+var _404        = require('./404');
 var utils       = require('./utils');
 
 var ko;
@@ -14,11 +15,12 @@ function init(ko_) {
     ko = ko_;
     component.init(ko);
     kokoView.init(ko);
+    _404.init(ko, component.createComponentViewModel);
     bindings.init(ko);
     setEarlyExports();
 }
 
-function run(config_) {
+function setConfig(config_) {
     config = config_;
 
     // Init stuff to inject dependencies.
@@ -44,21 +46,12 @@ function run(config_) {
         }
     }
 
-    // Get resolved 404 redirect for router.
-    var notFoundRedirect;
-    if (typeof config.notFoundRedirect === 'object') {
-        notFoundRedirect = urlResolver.resolveAbsolutePathToUrl(config.notFoundRedirect.path, config.notFoundRedirect.params);
-    } else {
-        notFoundRedirect = urlResolver.resolveAbsolutePathToUrl(config.notFoundRedirect);
-    }
-
     // Start router.
     router.start({
         rootUrl: config.rootUrl,
         routes: routes,
         routeParams: config.routeParams,
         redirects: redirects,
-        notFoundRedirect: notFoundRedirect,
         html5History: config.html5History || false
     }, onRoute);
 
@@ -67,7 +60,12 @@ function run(config_) {
 }
 
 function onRoute(route, params) {
-    stateTree.update(config.routes[route], params);
+    if (route) {
+        stateTree.update(config.routes[route], params);
+    } else {
+        stateTree.update(config.notFoundComponent || 'kokoDefault404', params);
+    }
+
 }
 
 function navigateToPath(path, params, stateNode) {
@@ -82,7 +80,7 @@ function navigateToUrl(url) {
 function setEarlyExports() {
     utils.assign(module.exports, {
         componentViewModel: component.createComponentViewModel,
-        run: run
+        config: setConfig
     });
 }
 

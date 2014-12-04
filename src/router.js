@@ -15,7 +15,6 @@ var router;
 var routes;           // A array of "/route/:patterns"
 var routeParams;      // An array of named parameter definitions
 var redirects;        // An object mapping "a/rout:pattern" to "another/url"
-var notFoundRedirect; // A string defining "a/url" to naviagate to as 404
 
 function normalizeUrlFragment(url) {
     if (!url) {
@@ -40,8 +39,7 @@ function startRouter(config, cb) {
     routes           = config.routes;
     routeParams      = config.routeParams;
     redirects        = config.redirects;
-    notFoundRedirect = config.notFoundRedirect;
-    if (!routes  || !routeParams || !redirects || !notFoundRedirect) {
+    if (!routes  || !routeParams || !redirects) {
         throw new Error ('Invalid configuration');
     }
 
@@ -83,10 +81,8 @@ function startRouter(config, cb) {
         /* jshint +W083 */
     }
 
-    // If route not found, redirect to 404 route.
-    router.on('.*', function() {
-        navigate(notFoundRedirect);
-    });
+    // If route not found, set the component path to blank.
+    router.on('.*', onRoute.bind(window, '', cb));
 
     // If we receive a url that looks like /root/something/ in a browser
     // using hash based routing, we redirect to root/#/something
