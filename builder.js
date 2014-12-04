@@ -23,7 +23,7 @@ function build(debug) {
     // Import HTML files as strings using stringify
     bundler.transform({ global: true }, stringify(['.html']));
     if (!debug) {
-        bundler.transform({ global: true }, 'uglifyify')
+        bundler.transform({ global: true }, 'uglifyify');
     }
 
     // Bundle!

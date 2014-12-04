@@ -40,7 +40,7 @@ function bindMethods(self) {
         }
     }
     return self;
-};
+}
 
 function createClass(props, doNotBind) {
     var Class = function() {

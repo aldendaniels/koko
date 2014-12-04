@@ -21,7 +21,6 @@ function init(ko) {
              *  }
              * */
 
-            // Get options and element.
             var opts = valueAccessor();
 
             // Set href.
@@ -46,9 +45,7 @@ function init(ko) {
              *  }
              * */
 
-            // Get options and element.
             var opts = valueAccessor();
-            var $el = $(element);
 
             // Conditionally add the "active" class.
             var stateNode = utils.getStateNodeFromContext(bindingContext);
