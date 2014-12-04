@@ -1,0 +1,23 @@
+{
+  "name": "koko",
+  "version": "0.1.0",
+  "description": "A client-side routing framework for single page Knockout web apps",
+  "main": "src/koko.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aldendaniels/koko"
+  },
+  "bugs": {
+    "url": "https://github.com/aldendaniels/koko/issues"
+  },
+  "keywords": [
+    "router",
+    "knockout"
+  ],
+  "author": "Alden Daniels",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "browserify": "^6.3.3"
+  }
+}
