@@ -1,0 +1,8 @@
+<!-- ko foreach: $parent.koko.stateNode.children -->
+<div data-bind="
+    component: {
+        name: component,
+        params: { stateNode: $data, parent: $parents[1] }
+    }, visible: isVisible()
+"></div>
+<!-- /ko -->
