@@ -9,6 +9,7 @@
     "director": "^1.2.3"
   },
   "devDependencies": {
+    "combined-stream": "0.0.7",
     "stringify": "^3.0.0",
     "uglifyify": "^2.6.0"
   }
