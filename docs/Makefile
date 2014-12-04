@@ -50,12 +50,12 @@ clean:
 	rm -rf $(BUILDDIR)/*
 
 html:
-	$(SPHINXBUILD) -b html -c . $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 	@echo "Build finished. The HTML pages are in $(BUILDDIR)/html."
 
 livehtml:
-	sphinx-autobuild -b html -c . $(ALLSPHINXOPTS) $(BUILDDIR)/html
+	sphinx-autobuild -b html $(ALLSPHINXOPTS) $(BUILDDIR)/html
 	@echo
 
 dirhtml:
