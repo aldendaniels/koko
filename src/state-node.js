@@ -27,11 +27,10 @@ var StateNode = utils.createClass({
     },
 
     setReady: function() {
-        if (this.status() !== 'loading') {
-            throw new Error('Only loading components can be marked as ready');
+        if (this.status() === 'loading') {
+            this.status('pending_visible');
+            state.transitionIfReady();
         }
-        this.status('pending_visible');
-        state.transitionIfReady();
     },
 
     updateRouteParams: function (routeParams) {

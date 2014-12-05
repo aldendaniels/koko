@@ -19,7 +19,7 @@ var ComponentState = utils.createClass({
         this.stateNode.setReady();
     },
 
-    navigate: function(path, params) {
+    navigateToPath: function(path, params) {
         router.navigate(urlResolver.resolvePathToUrl(path, params, this.stateNode));
     },
 
