@@ -13,7 +13,7 @@ using ``koko.componentViewModel()``:
 
         viewModel: koko.componentViewModel({
             init: function(parent) {
-                ...
+                this.koko.setReady();
             },
             ...
         }, /* optional: doNotBind */),
@@ -25,7 +25,7 @@ using ``koko.componentViewModel()``:
 **koko.componentViewModel()** does the following:
 
 - Calls the ``init()`` method on ViewModel instantiation.
-- Passes the parent ``ViewModel`` object (if any) to ``init()``.
+- Passes the parent ViewModel object (if any) to ``init()``.
 - Optionally binds any methods defined to the component ViewModel.
 - Adds ``this.koko`` to the component (see below).
 
