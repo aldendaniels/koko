@@ -1,5 +1,5 @@
 /*!
-* Koko JavaScript library v0.1.0
+* Koko JavaScript library v0.1.1
 * (c) OneSpot, Inc. - http://onespot.com/
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
 */
