@@ -7,15 +7,15 @@ API
 koko.init()
 -----------
 
-Example:
+Koko is built on top of Knockout and needs access to the Knockout
+library. Call ``koko.init()`` passing in the ``ko`` object before using Koko.
 
 .. code-block:: javascript
 
   koko.init(ko);
 
-The ``koko.init()`` must be called before any other Koko members are exposed. 
-This is how Koko gets access to the Knockout library. This approach means that
-Koko doesn't need to know how you loaded Knockout - global variable? AMD? 
+
+Koko doesn't need to know how you loaded Knockout - global variable? AMD?
 CommonJS? Koko doesn't care.
 
 koko.config()
@@ -50,7 +50,7 @@ koko.navigateToUrl()
     koko.navigateToUrl('/users/123');
 
 Redirects the browser to the desired URL. This normalizes the URL to work
-correctly whehter using HTML5History routing or hashtag-based routing.
+correctly whether using HTML5History based routing or hashtag based routing.
 
 koko.navigateToPath()
 ---------------------
@@ -64,11 +64,12 @@ URL matching the provided component path and parameter values. Then, navigates
 to the URL.
 
 koko.root
----------------------
-Binding state that needs to be provided when calling ``applyBindings()``:
+---------
+
+Binding state that needs to be provided applying bindings:
 
 .. code-block:: javascript
 
     ko.applyBindings({ 'koko': koko.root });
 
-See :doc:`getting-started` **step 6** for more details.
+See :doc:`getting-started` **step 6** for details.

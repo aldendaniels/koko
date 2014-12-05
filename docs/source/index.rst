@@ -21,6 +21,7 @@ Koko is built on Knockout's **component** feature and supports loading nested co
    nested-routing
    helper-bindings
    api
+   credits
 
 .. _Knockout: http://knockoutjs.com/
 .. _Angular UI Router: https://github.com/angular-ui/ui-router

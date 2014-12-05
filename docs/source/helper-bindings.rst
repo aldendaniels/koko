@@ -4,18 +4,16 @@ Helper Bindings
 The kokoHref binding
 ---------------------
 
-The ``kokoHref`` binding constructs a link using koko’s route reversal
+The ``kokoHref`` binding constructs a link using Koko’s route reversal
 functionality and optionally adds an ``active`` class when the route is
-active.
-
-Example:
+active:
 
 .. code-block:: html
 
-        <div id="todo-list" data-bind="foreach: todos">
+        <div id="user-list" data-bind="foreach: users">
             <a data-bind="text: name, koko-href: { 
-                path: '.todo-detail',
-                params: { todoId: id }
+                path: '.user-detail',
+                params: { userId: id }
                 activate: true
             }"></a>
         </div>
@@ -25,18 +23,15 @@ Relative paths begin with a ``.``
 The kokoActivate binding
 -------------------------
 
-The ``kokoActivate`` binding adds an ``active`` class when the target path is 
-active and removes it when the target path is ``inactive``. This can be applied 
-to any element.
-
-Example:
+The ``kokoActivate`` binding adds an ``active`` class when the target path
+is active:
 
 .. code-block:: html
 
-        <div id="todo-list" data-bind="foreach: todos">
-            <div id="todo" data-bind="koko-activate: {
-                path: '.todo-detail', 
-                params: {todoId: id
+        <div id="user-list" data-bind="foreach: users">
+            <div id="user" data-bind="koko-activate: {
+                path: '.user-detail', 
+                params: {userId: id
             }">
             ...
             </div>
