@@ -13,21 +13,28 @@ var licenseComment = [
     '*/'
 ].join('\n') + '\n';
 
-function build(debug) {
+function build(minify, addSourceMap) {
     // Create bundler.
     var bundler = browserify({
         entries: './src/koko.js',
-        debug: debug
+        debug: addSourceMap,
+        standalone: 'koko'
     });
 
     // Import HTML files as strings using stringify.
     bundler.transform({ global: true }, stringify(['.html']));
-    if (!debug) {
+    if (minify) {
         bundler.transform({ global: true }, 'uglifyify');
     }
 
     // Bundle code.
-    var path = (debug ? './build/koko.debug.js' : './build/koko.min.js');
+    var postfix = '';
+    if (minify) {
+        postfix = '.min';
+    } else if (addSourceMap) {
+        postfix = '.debug';
+    }
+    var path = './build/koko' + postfix + '.js';
     var sourceStream = bundler.bundle();
 
     // Create license stream.
@@ -46,6 +53,7 @@ function build(debug) {
 }
 
 if (require.main === module) {
-    build(true);
-    build(false);
+    build(false, false); // Default (non-minified w/out source maps)
+    build(false, true);  // Debug (non-minified with source maps)
+    build(true, false);  // Production (minified)
 }

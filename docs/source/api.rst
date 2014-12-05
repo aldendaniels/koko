@@ -71,4 +71,4 @@ Binding state that needs to be provided when calling ``applyBindings()``:
 
     ko.applyBindings({ 'koko': koko.root });
 
-See :doc:`getting-started` **step 5** for more details.
+See :doc:`getting-started` **step 6** for more details.

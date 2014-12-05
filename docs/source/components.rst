@@ -5,7 +5,7 @@ Overview
 --------
 A Koko component is a `Knockout Component`_ with a few extras. 
 The only requirement when creating a Koko component is that the 
-viewModel be created using ``koko.componentViewModel()``.
+ViewModel be created using ``koko.componentViewModel()``.
 
 
 .. code-block:: javascript
@@ -25,30 +25,31 @@ viewModel be created using ``koko.componentViewModel()``.
 
 **koko.componentViewModel()** does the following:
 
-- Calls the ``init()`` method on viewModel instantiation.
-- Passes the parent ``viewModel`` object (if any) to ``init()``
+- Calls the ``init()`` method on ViewModel instantiation.
+- Passes the parent ``ViewModel`` object (if any) to ``init()``.
+- Optionally binds any methods defined to the component ViewModel.
 - Adds ``this.koko`` to the component (see below).
-- Optionally binds all methods to the component viewModel 
-
 
 this.koko.setReady()
 --------------------
 Koko will not transition to a new component until the component and all 
-it's children are "ready". As soon as a compnent is ready to be displayed,
-call ``this.koko.setReady()``. 
+its children are "ready". As soon as a compnent is ready to be displayed,
+call:
+
+.. code-block:: javascript
+
+    this.koko.setReady();
 
 this.koko.navigateToPath()
 -------------------------
 .. code-block:: javascript
 
-    this.koko.navigateToPath(path, params);
+    koko.resolve('.user-detail', { 'userId': 123 });
 
-
-Does a reverse lookup on a component path + params compbination and redirects
-the browser to the target URL. ``path`` can either be an absolute path or a 
-relative path beginning with a ``.`` Relative paths are resolved relative to 
-the component path of current component.
-
+Does a reverse lookup on the defined routes to find a route that matches
+the provded ``path``. If such a route exists, it will navigate to the URL.
+This is exactly like the global ``koko.navigateToPath()`` (see :doc:`api`),
+except that this can resolve relative (dot-prefixed) paths.
 
 this.koko.on('componentDisposal')
 ---------------------------------
@@ -56,7 +57,9 @@ this.koko.on('componentDisposal')
 
     this.koko.on('componentDisposal', handler);
 
-Calls ``handler`` when the component is disposed of. Use this instead of the standard ``.dispose()`` method as Koko uses the ``dispose()`` method for cleanup.
+Calls ``handler`` when the component is disposed of. Use this instead of
+the standard ``.dispose()`` method as Koko uses the ``dispose()`` method
+for cleanup.
 
 this.koko.on('dependencyChange')
 ---------------------------------
@@ -67,13 +70,14 @@ this.koko.on('dependencyChange')
 Creates a Knockout **computed observable** wrapping the ``handler`` function
 so that the handler function will be called whenever any obersable
 it depends on changes. This is better than calling ``ko.computed()``
-yourself because Koko will automatically dispose computed observable
-along-side the component. This avoids memory leaks.
+yourself because Koko (when calling ``this.koko.on('dependencyChange', ...)``)
+will automatically dispose the computed observable alongside the component.
+This avoids memory leaks.
 
 this.koko.routeParams
 ---------------------------------
-An object mapping every URL parameter name to a Knockout observable 
-containing the parameter value or ``null`` if not defined.
+An object mapping every URL parameter to a Knockout observable.
+The observable will contain the parameter value or ``null`` if not defined.
 
 .. code-block:: javascript
     
@@ -83,9 +87,9 @@ containing the parameter value or ``null`` if not defined.
         ...
     }
 
-If the parameter definition provided a ``parse()`` method, then the 
-value of the parameter will be the return value of the ``parse()`` 
-method.
+If the parameter definition provided a ``parse()`` method
+(see :doc:`route-configuration`), then the value of the parameter
+will be the return value of the ``parse()`` method.
 
 About Disposal
 --------------

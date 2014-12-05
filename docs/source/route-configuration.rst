@@ -43,7 +43,8 @@ Example:
                 }
             }
         },        
-        notFoundComponent: '404'
+        notFoundComponent: '404',
+        html5History: true
     });
 
 Routes
@@ -96,3 +97,21 @@ Not Found Component
 
 A component to load when the user navigates to an unrecognized URL. If this is not provided
 Koko will display a generic 404 component.
+
+HTML5 History
+------------------------
+
+.. code-block:: javascript
+
+    options.html5History = [Boolean];
+
+Setting this option to ``true`` will make Koko use HTML5History-based
+routing for browsers that support the HTML5History API. Koko will fall
+back to hashtag based routing for older browsers.
+
+.. Hint::
+
+    When you enable HTML5History-based routing, you'll need to configure
+    your server to always serve up the your ``index.html`` file for whatever
+    path is requested.
+

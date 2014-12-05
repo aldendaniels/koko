@@ -4,18 +4,18 @@ Why Koko?
 A traditional web application has several components (terminology
 may vary):
 
-1. **Router**: Maps a request URL to specific application state
+1. **Router**: Maps a request URL to a specific application state
 2. **Model**: Normalized application data (your database)
 3. **ViewModel**: Denormalized data representing the UI state
-4. **View**: Renders the *ViewModel* as a user interface
+4. **View**: Renders the ViewModel as a user interface
 5. **Controller**:
 
-   a) Updates the *ViewModel* based on UI interactions (e.g. user edits)
-   b) Updates the server-side *Model* from the *ViewModel*
+   a) Updates the ViewModel based on UI interactions (e.g. user edits)
+   b) Updates the server-side Model from the ViewModel
 
 `Knockout`_ does a great job of simplifying components **3**, **4**, and
 **5** via declarative two-way data binding between the *View* and the
-*ViewModel*. Knockout, however, does **not** help with application routing.
+ViewModel. Knockout, however, does **not** help with application routing.
 
 A routing framework has two basic tasks to perform:
 
