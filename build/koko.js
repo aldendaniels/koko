@@ -1,5 +1,5 @@
 /*!
-* Koko JavaScript library v0.1.1
+* Koko JavaScript library v0.1.2
 * (c) OneSpot, Inc. - http://onespot.com/
 * License: MIT (http://www.opensource.org/licenses/mit-license.php)
 */
@@ -923,7 +923,7 @@ var ComponentState = utils.createClass({
         this.stateNode.setReady();
     },
 
-    navigate: function(path, params) {
+    navigateToPath: function(path, params) {
         router.navigate(urlResolver.resolvePathToUrl(path, params, this.stateNode));
     },
 
@@ -1155,11 +1155,10 @@ var StateNode = utils.createClass({
     },
 
     setReady: function() {
-        if (this.status() !== 'loading') {
-            throw new Error('Only loading components can be marked as ready');
+        if (this.status() === 'loading') {
+            this.status('pending_visible');
+            state.transitionIfReady();
         }
-        this.status('pending_visible');
-        state.transitionIfReady();
     },
 
     updateRouteParams: function (routeParams) {
