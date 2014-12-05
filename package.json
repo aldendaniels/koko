@@ -1,6 +1,6 @@
 {
   "name": "koko",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Knockout-component-based routing framework",
   "main": "src/koko.js",
   "author": "Alden Daniels",
