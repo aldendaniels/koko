@@ -9,8 +9,14 @@
     "director": "^1.2.3"
   },
   "devDependencies": {
+    "chai": "^1.10.0",
+    "colors": "^1.0.3",
     "combined-stream": "0.0.7",
+    "express": "^4.10.4",
+    "mocha": "^2.0.1",
+    "sauce-connect-launcher": "^0.9.2",
     "stringify": "^3.0.0",
-    "uglifyify": "^2.6.0"
+    "uglifyify": "^2.6.0",
+    "webdriverio": "^2.4.0"
   }
 }

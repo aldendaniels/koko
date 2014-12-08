@@ -1,3 +1,0 @@
-# Testing
-
-No tests yet. :(
