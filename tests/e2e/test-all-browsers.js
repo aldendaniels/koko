@@ -3,7 +3,7 @@ var utils        = require('./utils');
 var childProcess = require('child_process');
 var fs           = require('fs');
 var path         = require('path');
-var colors       = require('colors');
+var colors       = require('colors'); // jshint ignore:line
 
 var browsers = [
     'chrome',
@@ -53,7 +53,7 @@ function runTest(browserName) {
     console.log('start:', browserName);
 
     // Run test in child process.
-    var childPath = './test-single-browser.js';
+    var childPath = path.join(__dirname, 'test-single-browser.js');
     var childArgs = [browserName, 'multi-run'];
     var childOpts = {silent: true};
     var testProcess = childProcess.fork(childPath, childArgs, childOpts);
@@ -82,7 +82,7 @@ function runTests() {
 
 if (require.main === module) {
     var logsDirPath = path.join(__dirname, 'logs');
-    utils.makeDirIfNotExistsSync(logsDirPath)
+    utils.makeDirIfNotExistsSync(logsDirPath);
     utils.emptyDirSync(logsDirPath);
     server.start(runTests);
 }

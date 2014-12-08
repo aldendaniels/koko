@@ -66,7 +66,9 @@ var isMultiRun = false;
 function runTests(browserName) {
     // Add tests to mocha.
     var mocha = new Mocha({
-        timeout: 60000 // 60 seconds
+        timeout: 60000, // 60 seconds
+        useColors: !isMultiRun, // No colors in multi run, as this is saved to disk.
+        reporter: 'list'
     });
     var testDir = path.join(__dirname, 'tests');
     fs.readdirSync(testDir).forEach(function(file){

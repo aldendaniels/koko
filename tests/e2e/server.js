@@ -1,4 +1,4 @@
-var colors               = require('colors');
+var colors               = require('colors'); // jshint ignore:line
 var sauceConnectLauncher = require('sauce-connect-launcher');
 var express              = require('express');
 var path                 = require('path');
