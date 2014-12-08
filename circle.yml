@@ -1,3 +1,6 @@
 test:
   override:
     - node tests/e2e/test-all-browsers.js
+general:
+  artifacts:
+    - "tests/e2e/logs" # relative to the project root (build directory)
