@@ -81,6 +81,8 @@ function runTests() {
 }
 
 if (require.main === module) {
-    utils.emptyDirSync(path.join(__dirname, 'logs'));
+    var logsDirPath = path.join(__dirname, 'logs');
+    utils.makeDirIfNotExistsSync(logsDirPath)
+    utils.emptyDirSync(logsDirPath);
     server.start(runTests);
 }

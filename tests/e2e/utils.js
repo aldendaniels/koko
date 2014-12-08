@@ -15,6 +15,13 @@ function emptyDirSync(dir) {
     }
 }
 
+function makeDirIfNotExistsSync(dir) {
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir);
+    }
+}
+
 module.exports = {
-    emptyDirSync: emptyDirSync
+    emptyDirSync: emptyDirSync,
+    makeDirIfNotExistsSync: makeDirIfNotExistsSync
 };
