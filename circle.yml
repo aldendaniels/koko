@@ -1,0 +1,3 @@
+test:
+  override:
+    - node tests/e2e/test-all-browsers.js
