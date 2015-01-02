@@ -39,11 +39,21 @@ call:
 
     this.koko.setReady();
 
-this.koko.navigateToPath()
+this.koko.resolve()
 -------------------------
 .. code-block:: javascript
 
     koko.resolve('.user-detail', { 'userId': 123 });
+
+Does a reverse lookup on the defined routes to find a route that matches
+the provided ``path``. This is exactly like the global ``koko.resolve()`` 
+(see :doc:`api`), except that this can resolve relative (dot-prefixed) paths.
+
+this.koko.navigateToPath()
+-------------------------
+.. code-block:: javascript
+
+    koko.navigateToPath('.user-detail', { 'userId': 123 });
 
 Does a reverse lookup on the defined routes to find a route that matches
 the provided ``path``. If such a route exists, it will navigate to the URL.
