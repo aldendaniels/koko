@@ -7,8 +7,13 @@ function init(ko) {
     ko.bindingHandlers.kokoHref = {
         init: function(element) {
             ko.utils.registerEventHandler(element, 'click', function(event) {
-                router.navigate(element.getAttribute('href'));
-                event.preventDefault();
+                // Short-cicuit for local URls to prevent full page refresh.
+                var href = element.getAttribute('href');                
+                if (href.slice(0, 1) === '/' || href.indexOf(window.location.origin) === 0) {
+                    router.navigate(href);
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
             });
         },
         update: function (element, valueAccessor, ignore1, ignore2, bindingContext) {
@@ -18,19 +23,28 @@ function init(ko) {
              *      params: { userId: 123 },
              *      activate: true
              *  }
+             * OR
+             *   'http://someurl'
              * */
 
             var opts = valueAccessor();
+            switch (typeof opts) {
+                case 'object':
+                    // Set href.
+                    var stateNode = utils.getStateNodeFromContext(bindingContext);
+                    element.setAttribute('href', urlResolver.resolvePathToUrl(opts.path, opts.params, stateNode));
 
-            // Set href.
-            var stateNode = utils.getStateNodeFromContext(bindingContext);
-            var href = urlResolver.resolvePathToUrl(opts.path, opts.params, stateNode);
-            element.setAttribute('href', href);
-
-            // Optionally add "selected" class when href target is active.
-            if (opts.activate) {
-                var pathMatchesCurrent = urlResolver.pathMatchesCurrent(opts.path, opts.params, stateNode);
-                utils.toggleElemClass(element, 'active', pathMatchesCurrent);
+                    // Optionally add "selected" class when href target is active.
+                    if (opts.activate) {
+                        var pathMatchesCurrent = urlResolver.pathMatchesCurrent(opts.path, opts.params, stateNode);
+                        utils.toggleElemClass(element, 'active', pathMatchesCurrent);
+                    }
+                    break;
+                case 'string':
+                    element.setAttribute('href', opts);
+                    break;
+                default:
+                    throw new Error('kokoHref expect either a string or an object parameter type');
             }
         }
     };

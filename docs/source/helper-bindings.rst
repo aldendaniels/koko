@@ -2,11 +2,14 @@ Helper Bindings
 ===============
 
 The kokoHref binding
----------------------
+--------------------
 
-The ``kokoHref`` binding constructs a link using Koko’s route reversal
-functionality and optionally adds an ``active`` class when the route is
-active:
+Normal Usage
+^^^^^^^^^^^^
+Constructs an internal link using Koko’s route reversal functionality 
+and optionally adds an ``active`` class when the route is active. Will
+intercept navigation (see below).
+
 
 .. code-block:: html
 
@@ -19,6 +22,24 @@ active:
         </div>
 
 Relative paths begin with a ``.``
+
+
+Without URL reversal
+^^^^^^^^^^^^^^^^^^^^
+Sets the ``href`` of the link to the provided string. Will intercept navigation (see below).
+
+.. code-block:: html
+
+    <a data-bind="koko-href: '/some/url'"></a>
+
+    
+Navigation Interception
+^^^^^^^^^^^^^^^^^^
+Koko Intercepts clicks on internal links created using the ``kokoHref`` binding.
+For internal links, Koko will cancel the default browser navigation and perform
+the navigation internally. This avoids unecessary full page reloads. For links to
+external domains, ``kokoHref`` will allow the default browser navigation to occur.
+
 
 The kokoActivate binding
 -------------------------
