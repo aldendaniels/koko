@@ -1,5 +1,5 @@
 {
-  "name": "koko",
+  "name": "koko-router",
   "version": "0.1.2",
   "description": "Knockout-component-based routing framework",
   "main": "src/koko.js",
@@ -18,5 +18,20 @@
     "stringify": "^3.0.0",
     "uglifyify": "^2.6.0",
     "webdriverio": "^2.4.0"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aldendaniels/koko.git"
+  },
+  "bugs": {
+    "url": "https://github.com/aldendaniels/koko/issues"
+  },
+  "homepage": "https://github.com/aldendaniels/koko"
 }
